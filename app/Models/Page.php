@@ -17,7 +17,7 @@ class Page extends Model
         'status',        
     ];    
 
-    public function user(){
+    public function users(){
         return $this->belongsToMany(User::class);
     }
 }

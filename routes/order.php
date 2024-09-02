@@ -24,4 +24,7 @@ Route::group(["middleware"=>["auth:api"]], function () {
    Route::post('/order_follower', [OrderFront::class, 'order_follower']);
    //unfollow list
    Route::get('/unfollow_list', [OrderFront::class, 'order_unfollow_list']);
+   //follow page
+   Route::post('/follow_user', [OrderFront::class, 'follow_user']);
+   
 });

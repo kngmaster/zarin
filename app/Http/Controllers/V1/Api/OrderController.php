@@ -19,4 +19,13 @@ class OrderController extends Controller
         $res = $this->orderRepository->order_unfollow_list($request);
         return JsonResponseHelper::OutputResponse( $res, JsonResponseHelper::MESSAGE[ 'success' ], true, 200 );
     }
+
+    public function follow_user(Request $request){
+        $res = $this->orderRepository->follow_user( $request );
+        if($res == false){
+            return JsonResponseHelper::OutputResponse( '', JsonResponseHelper::MESSAGE[ 'login_invalid' ], true, 422 );           
+        }
+        return JsonResponseHelper::OutputResponse( '', JsonResponseHelper::MESSAGE[ 'success' ], true, 200 );
+
+    }
 }
