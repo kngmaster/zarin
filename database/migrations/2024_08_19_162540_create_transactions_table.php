@@ -30,7 +30,7 @@ return new class extends Migration
                 //define foreign
                 $table->foreign('gateway_id')
                 ->references('id')
-                ->on('gatwayes');
+                ->on('gatewayes');
 
                
         });

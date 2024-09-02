@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\V1\Api\TaskController as TaskFront;
-use App\Http\Controllers\V1\Admin\TaskController as TaskAdmin;
+use App\Http\Controllers\V1\Api\SettingController as SettingFront;
+
 
 
 
@@ -19,11 +19,10 @@ use App\Http\Controllers\V1\Admin\TaskController as TaskAdmin;
 */
 
 Route::group([], function () {
+      //get first config
+      Route::get('/first_init', [SettingFront::class, 'config']);
 });
 
-Route::group(["prefix" => "admin","middleware"=>["auth:api"]], function () {
-    //create
-    Route::post('/create', [TaskAdmin::class, 'create']);
-    
+Route::group(["prefix" => "admin","middleware"=>["auth:api"]], function () { 
   
 });

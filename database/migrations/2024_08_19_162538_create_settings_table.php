@@ -14,12 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->id();          
+            $table->id();      
+            $table->string('slug')->nullable();              
             $table->string('version')->nullable();             
             $table->smallInteger('status')->default(1)->comment('0 deactive,1 active');
             $table->timestamps();
-
-
         });
 
         

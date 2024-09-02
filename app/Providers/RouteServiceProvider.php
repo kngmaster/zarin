@@ -54,7 +54,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
         $this->mapApiV1AuthRoutes();
         $this->mapApiV1UserRoutes();
-        $this->mapApiV1TaskRoutes();
+        $this->mapApiV1OrderRoutes();
+        $this->mapApiV1SettingRoutes();
     }
 
     protected function mapWebRoutes()
@@ -92,14 +93,25 @@ class RouteServiceProvider extends ServiceProvider
             ->group(base_path('routes/user.php'));
     }
 
-    protected function mapApiV1TaskRoutes()
+    protected function mapApiV1OrderRoutes()
     {
         $this->configureRateLimiting();
 
-        Route::prefix('api/v1/task')
+        Route::prefix('api/v1/order')
             ->middleware('api')
             ->namespace($this->namespace)
-            ->group(base_path('routes/task.php'));
+            ->group(base_path('routes/order.php'));
     }
 
+    protected function mapApiV1SettingRoutes()
+    {
+        $this->configureRateLimiting();
+
+        Route::prefix('api/v1/setting')
+            ->middleware('api')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/setting.php'));
+    }
+
+    
 }

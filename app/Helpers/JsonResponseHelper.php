@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Helper;
+namespace App\Helpers;
 
 class JsonResponseHelper
 {
@@ -12,7 +12,9 @@ class JsonResponseHelper
         "mobile_repeat" => "تلفن همراه از قبل وجود دارد",
         "fail" => "با خطا انجام شد",
         "login_valid" => 'با موفقیت ورود انجام شد',
-        "login_invalid" => 'نام کاربری یا کلمه عبور اشتباه است',        
+        "login_invalid" => 'نام کاربری یا کلمه عبور اشتباه است',
+        "invalid_app" => 'امکان ورود به برنامه وجود ندارد',        
+        
     ];
 
     public static function OutputResponse($data = '', $message = '',$status = true , $statusCode = 200)
