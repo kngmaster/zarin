@@ -19,6 +19,16 @@ use App\Http\Controllers\V1\Admin\AuthController as AuthAdmin;
 */
 
 Route::group([], function () {
+    //login
+    Route::post('/login', [AuthFront::class, 'login']);
+    //register
+    Route::post('/register', [AuthFront::class, 'register']);
+    //log out user
+    Route::post('/logout', [AuthFront::class, 'logout'])->middleware(["auth:api"]);
 });
 
+Route::group(["prefix" => "admin","middleware"=>["auth:api"]], function () { 
+    
+    
+});
 

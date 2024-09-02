@@ -1,63 +1,59 @@
 <?php
 
 namespace App\Services\Action;
+
 use App\Models\User;
 use App\Services\Interface\AuthRepositoryInterface;
-
-
+use Illuminate\Support\Facades\Hash;
 
 class AuthRepository implements AuthRepositoryInterface
 {
 
     public function register($request)
-    {      
+    {
         $name = $request->name;
         $email = $request->email;
         $password = $request->password;
+        $version = resolve(SettingRepository::class)->get_version();
 
         $user = User::create([
             "name" => $name,
             "email" => $email,
-            "password" =>$password
-        ]);        
-      
+            "password" => $password,
+            "version" => $version
+        ]);
+
         $data = [];
         $data['user'] = $user;
-        $data['token'] = $user->createToken('esanj_token')->accessToken;
+        $data['token'] = $user->createToken('zarin_token')->accessToken;
         return $data;
     }
- 
+
     /**
      * Laravel Passport User Login  API Function
      */
     public function login($request)
-    {        
+    {
         $email = $request->email;
         $password = $request->password;
 
-        $userData = User::where('email',$email)->first();
-        if ($userData) {
-            if (Hash::check($password, $userData->password)) {
-                    $success['token'] = $userData->createToken('MY_New_Project')->accessToken;
-                    $success['massage'] = "Login Successfully!";
-                    return response()->json(['data'=>$success], 200);
+        $user = User::where('email', $email)->first();
+        if ($user) {
+            if (Hash::check($password, $user->password)) {                
+                $data = [];
+                $data['user'] = $user;
+                $data['token'] = $user->createToken('zarin_token')->accessToken;
+                return $data; 
             }
-        }else{
-            return false;          
-        }  
+        } else {
+            return false;
+        }
     }
- 
- 
- 
-    /**
-     * Laravel Passport User Login  API Function
-     */
-   
+
+
     public function logout($request)
-{
-    $token = $request->user()->token();
-    $token->revoke();
-    return true;
-}
- 
+    {
+        $request->user()->tokens()->delete();
+        return true;
+    }
 }

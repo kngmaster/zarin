@@ -19,5 +19,10 @@ class SettingRepository implements SettingRepositoryInterface
        }
        return false;
     }
+
+    public function get_version(){
+      $config = Setting::select('version')->where('slug', 'init-config')->first();
+      return $config->version;
+    }
  
 }
