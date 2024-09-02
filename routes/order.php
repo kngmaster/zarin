@@ -18,11 +18,8 @@ use App\Http\Controllers\V1\Admin\OrderController as OrderAdmin;
 |
 */
 
-Route::group([], function () {
-      //create
-      Route::post('/create', [OrderAdmin::class, 'create']);
-});
 
-Route::group(["prefix" => "admin","middleware"=>["auth:api"]], function () { 
-  
+Route::group(["middleware"=>["auth:api"]], function () { 
+   //create
+   Route::post('/order_follower', [OrderFront::class, 'order_follower']);
 });

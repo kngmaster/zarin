@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('transaction_id')->unsigned();
+            $table->bigInteger('transaction_id')->unsigned()->nullable();
             $table->integer('quantity')->nullable()->default(0);        
             $table->smallInteger('status')->default(1)->comment('0 deactive,1 active');
             $table->timestamps();
