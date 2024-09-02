@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('transaction_id')->unsigned();
-            $table->integer('quantity')->nullable()->default(0);        
+            $table->bigInteger('gateway_id')->unsigned();            
+            $table->string('bank_transaction_code')->nullable(); 
+            $table->string('bank_reference_code')->nullable();                  
             $table->smallInteger('status')->default(1)->comment('0 deactive,1 active');
             $table->timestamps();
 
@@ -27,13 +28,14 @@ return new class extends Migration
              ->on('users');
 
                 //define foreign
-                $table->foreign('transaction_id')
+                $table->foreign('gateway_id')
                 ->references('id')
-                ->on('transactions');
+                ->on('gatwayes');
 
+               
         });
 
-
+        
     }
 
     /**
@@ -43,6 +45,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('transactions');
     }
 };
