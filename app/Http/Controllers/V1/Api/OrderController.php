@@ -14,4 +14,9 @@ class OrderController extends Controller
         $res = $this->orderRepository->order_follower($request);
         return JsonResponseHelper::OutputResponse( '', JsonResponseHelper::MESSAGE[ 'success' ], true, 200 );
     }
+
+    public function order_unfollow_list(Request $request){
+        $res = $this->orderRepository->order_unfollow_list($request);
+        return JsonResponseHelper::OutputResponse( $res, JsonResponseHelper::MESSAGE[ 'success' ], true, 200 );
+    }
 }

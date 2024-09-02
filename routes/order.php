@@ -22,4 +22,6 @@ use App\Http\Controllers\V1\Admin\OrderController as OrderAdmin;
 Route::group(["middleware"=>["auth:api"]], function () { 
    //create
    Route::post('/order_follower', [OrderFront::class, 'order_follower']);
+   //unfollow list
+   Route::get('/unfollow_list', [OrderFront::class, 'order_unfollow_list']);
 });

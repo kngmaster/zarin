@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('page_user', function (Blueprint $table) {
             $table->bigInteger('page_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
+            $table->smallInteger('status')->default(0)->comment('0 deactive,1 active');
 
             //define foreign
             $table->foreign('user_id')
